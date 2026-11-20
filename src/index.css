@@ -1,0 +1,305 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #060913;
+    color: #e2e8f0;
+  }
+}
+
+/* Neon Glows matching the game image */
+.neon-glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.8), 0 0 20px rgba(0, 240, 255, 0.4);
+}
+
+.neon-glow-cyan-intense {
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.95), 0 0 20px rgba(0, 240, 255, 0.8), 0 0 35px rgba(56, 189, 248, 0.6);
+}
+
+.neon-glow-ice {
+  text-shadow: 0 0 8px rgba(186, 230, 253, 0.95), 0 0 18px rgba(56, 189, 248, 0.85), 0 0 30px rgba(0, 240, 255, 0.6);
+}
+
+.neon-glow-dark-blue {
+  text-shadow: 0 0 10px rgba(59, 130, 246, 0.95), 0 0 25px rgba(37, 99, 235, 0.85), 0 0 45px rgba(29, 78, 216, 0.7);
+}
+
+.neon-line-blue {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 40px rgba(37, 99, 235, 0.45), inset 0 0 18px rgba(59, 130, 246, 0.25);
+}
+
+.neon-line-cyan {
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.75), 0 0 35px rgba(0, 240, 255, 0.35), inset 0 0 18px rgba(0, 240, 255, 0.2);
+}
+
+.neon-glow-gold {
+  text-shadow: 0 0 10px rgba(255, 188, 0, 0.8), 0 0 25px rgba(255, 188, 0, 0.5);
+}
+
+.neon-glow-yellow {
+  text-shadow: 0 0 10px rgba(255, 234, 0, 0.95), 0 0 25px rgba(255, 220, 0, 0.8), 0 0 45px rgba(250, 204, 21, 0.6);
+}
+
+.neon-glow-yellow-light {
+  text-shadow: 0 0 10px rgba(254, 249, 195, 0.95), 0 0 22px rgba(254, 240, 138, 0.85), 0 0 40px rgba(253, 224, 71, 0.65);
+}
+
+.neon-glow-orange {
+  text-shadow: 0 0 10px rgba(255, 120, 0, 0.95), 0 0 22px rgba(249, 115, 22, 0.9), 0 0 40px rgba(234, 88, 12, 0.75);
+}
+
+.font-sci-fi {
+  font-family: 'Orbitron', 'Russo One', 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* --- Intense Futuristic Neon Hover Effects for Buttons --- */
+.neon-glow-btn-cyan {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.45), inset 0 0 10px rgba(0, 240, 255, 0.2);
+}
+.neon-glow-btn-cyan:hover {
+  box-shadow: 
+    0 0 35px rgba(0, 240, 255, 1),
+    0 0 70px rgba(0, 240, 255, 0.85),
+    0 0 105px rgba(56, 189, 248, 0.65),
+    inset 0 0 20px rgba(255, 255, 255, 0.5) !important;
+  border-color: #00F0FF !important;
+  transform: translateY(-2px) scale(1.03);
+}
+
+.neon-glow-btn-amber {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.5), inset 0 0 10px rgba(251, 191, 36, 0.2);
+}
+.neon-glow-btn-amber:hover {
+  box-shadow: 
+    0 0 35px rgba(251, 191, 36, 1),
+    0 0 75px rgba(245, 158, 11, 0.9),
+    0 0 115px rgba(234, 88, 12, 0.7),
+    inset 0 0 20px rgba(255, 255, 255, 0.55) !important;
+  border-color: #FDE047 !important;
+  transform: translateY(-2px) scale(1.03);
+}
+
+.neon-glow-btn-emerald {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.5), inset 0 0 10px rgba(16, 185, 129, 0.2);
+}
+.neon-glow-btn-emerald:hover {
+  box-shadow: 
+    0 0 35px rgba(16, 185, 129, 1),
+    0 0 75px rgba(5, 150, 105, 0.9),
+    0 0 115px rgba(13, 148, 136, 0.7),
+    inset 0 0 20px rgba(255, 255, 255, 0.55) !important;
+  border-color: #6EE7B7 !important;
+  transform: translateY(-2px) scale(1.03);
+}
+
+.neon-glow-btn-purple {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.5), inset 0 0 10px rgba(168, 85, 247, 0.2);
+}
+.neon-glow-btn-purple:hover {
+  box-shadow: 
+    0 0 35px rgba(168, 85, 247, 1),
+    0 0 75px rgba(147, 51, 234, 0.9),
+    0 0 115px rgba(126, 34, 206, 0.7),
+    inset 0 0 20px rgba(255, 255, 255, 0.55) !important;
+  border-color: #D8B4FE !important;
+  transform: translateY(-2px) scale(1.03);
+}
+
+.neon-glow-btn-pink {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 20px rgba(244, 63, 94, 0.5), inset 0 0 10px rgba(244, 63, 94, 0.2);
+}
+.neon-glow-btn-pink:hover {
+  box-shadow: 
+    0 0 35px rgba(244, 63, 94, 1),
+    0 0 75px rgba(225, 29, 72, 0.9),
+    0 0 115px rgba(190, 18, 60, 0.7),
+    inset 0 0 20px rgba(255, 255, 255, 0.55) !important;
+  border-color: #FDA4AF !important;
+  transform: translateY(-2px) scale(1.03);
+}
+
+.neon-glow-btn-sky {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.5), inset 0 0 10px rgba(56, 189, 248, 0.2);
+}
+.neon-glow-btn-sky:hover {
+  box-shadow: 
+    0 0 35px rgba(56, 189, 248, 1),
+    0 0 75px rgba(14, 165, 233, 0.9),
+    0 0 115px rgba(2, 132, 199, 0.7),
+    inset 0 0 20px rgba(255, 255, 255, 0.55) !important;
+  border-color: #7DD3FC !important;
+  transform: translateY(-2px) scale(1.03);
+}
+
+.neon-glow-btn-orange {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.5), inset 0 0 10px rgba(249, 115, 22, 0.2);
+}
+.neon-glow-btn-orange:hover {
+  box-shadow: 
+    0 0 35px rgba(249, 115, 22, 1),
+    0 0 75px rgba(234, 88, 12, 0.9),
+    0 0 115px rgba(194, 65, 12, 0.7),
+    inset 0 0 20px rgba(255, 255, 255, 0.55) !important;
+  border-color: #FB923C !important;
+  transform: translateY(-2px) scale(1.03);
+}
+
+
+@keyframes balloonPop {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.neon-hint-balloon-animate {
+  animation: balloonPop 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* --- Central Text 3D Neon Model with Futuristic Font and Softened Blue Backlight --- */
+.neon-title-detetive {
+  font-family: 'Oxanium', 'Chakra Petch', 'Orbitron', 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #FFE27D;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFF9A6 14%, #FFCC00 30%, #FF7A00 60%, #E65100 82%, #8C1D00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.8px rgba(0, 240, 255, 0.45);
+  paint-order: stroke fill;
+  /* Diminuição da intensidade do azul atrás do texto: brilho sutil, limpo e refinado */
+  filter: 
+    drop-shadow(0 0 10px rgba(0, 240, 255, 0.35))
+    drop-shadow(0 0 20px rgba(0, 210, 255, 0.2))
+    drop-shadow(0 6px 14px rgba(0, 0, 0, 0.9));
+}
+
+.neon-subtitle-futuristic {
+  font-family: 'Oxanium', 'Chakra Petch', 'Orbitron', 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #FFE27D;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFF9A6 15%, #FFCC00 32%, #FF7A00 62%, #E65100 85%, #8C1D00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.6px rgba(0, 240, 255, 0.4);
+  paint-order: stroke fill;
+  /* Diminuição da intensidade do azul atrás do texto */
+  filter: 
+    drop-shadow(0 0 8px rgba(0, 240, 255, 0.3))
+    drop-shadow(0 0 16px rgba(0, 210, 255, 0.15))
+    drop-shadow(0 4px 10px rgba(0, 0, 0, 0.85));
+}
+
+.neon-hud-box-glitched {
+  position: relative;
+  border: 1.8px dashed #00F0FF;
+  background: rgba(0, 240, 255, 0.04);
+  box-shadow: 
+    0 0 20px rgba(0, 240, 255, 0.45),
+    inset 0 0 15px rgba(0, 240, 255, 0.15);
+  animation: hud-glitch-pulse 3s infinite alternate ease-in-out;
+}
+
+@keyframes hud-glitch-pulse {
+  0% {
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.35), inset 0 0 10px rgba(0, 240, 255, 0.1);
+    border-color: rgba(0, 240, 255, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(0, 240, 255, 0.75), inset 0 0 20px rgba(0, 240, 255, 0.25);
+    border-color: #00F0FF;
+  }
+  100% {
+    box-shadow: 0 0 40px rgba(0, 240, 255, 0.95), 0 0 75px rgba(56, 189, 248, 0.6), inset 0 0 25px rgba(0, 240, 255, 0.3);
+    border-color: #E0F2FE;
+  }
+}
+
+.neon-box-cyan {
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.25), inset 0 0 15px rgba(0, 240, 255, 0.1);
+}
+
+.neon-box-gold {
+  box-shadow: 0 0 25px rgba(255, 188, 0, 0.35), inset 0 0 10px rgba(255, 188, 0, 0.15);
+}
+
+.neon-border-pulse {
+  animation: border-pulse 2s infinite alternate ease-in-out;
+}
+
+@keyframes border-pulse {
+  0% {
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.2), inset 0 0 10px rgba(0, 240, 255, 0.05);
+  }
+  100% {
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.45), inset 0 0 20px rgba(0, 240, 255, 0.15);
+  }
+}
+
+@keyframes floatMath1 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-24px) rotate(8deg) scale(1.05);
+  }
+}
+
+@keyframes floatMath2 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(20px) rotate(-10deg) scale(0.96);
+  }
+}
+
+@keyframes floatMath3 {
+  0%, 100% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+  33% {
+    transform: translate(12px, -18px) rotate(6deg);
+  }
+  66% {
+    transform: translate(-10px, -10px) rotate(-6deg);
+  }
+}
+
+.animate-float-1 {
+  animation: floatMath1 8s infinite ease-in-out;
+}
+
+.animate-float-2 {
+  animation: floatMath2 11s infinite ease-in-out;
+}
+
+.animate-float-3 {
+  animation: floatMath3 14s infinite ease-in-out;
+}
+
+@keyframes pulse-red {
+  0%, 100% { color: #f43f5e; transform: scale(1); text-shadow: 0 0 10px rgba(244, 63, 94, 0.8); }
+  50% { color: #be123c; transform: scale(1.08); text-shadow: 0 0 20px rgba(244, 63, 94, 1); }
+}
+
+.timer-blink {
+  animation: pulse-red 0.5s infinite ease-in-out;
+}
+
+

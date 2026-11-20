@@ -1,0 +1,115 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-\\.:@]+$');
+    }
+
+    function isValidUser(data) {
+      return data.keys().hasAll(['id', 'nome', 'tipo', 'email', 'serie', 'dataCadastro']) &&
+             data.keys().hasOnly(['id', 'nome', 'tipo', 'email', 'senha', 'serie', 'materia', 'dataCadastro']) &&
+             data.id is string && data.id.size() <= 128 &&
+             data.nome is string && data.nome.size() <= 150 &&
+             data.tipo in ['aluno', 'professor', 'admin'] &&
+             data.email is string && data.email.size() <= 150 &&
+             (!('senha' in data) || (data.senha is string && data.senha.size() <= 100)) &&
+             data.serie is string && data.serie.size() <= 80 &&
+             (!('materia' in data) || (data.materia is string && data.materia.size() <= 80)) &&
+             data.dataCadastro is string && data.dataCadastro.size() <= 50;
+    }
+
+    function isValidResult(data) {
+      return data.keys().hasAll(['id', 'usuarioId', 'alunoNome', 'serie', 'modo', 'etapaNome', 'acertos', 'erros', 'timestamp']) &&
+             data.id is string && data.id.size() <= 128 &&
+             data.usuarioId is string && data.usuarioId.size() <= 128 &&
+             data.alunoNome is string && data.alunoNome.size() <= 150 &&
+             data.serie is string && data.serie.size() <= 80 &&
+             data.modo in ['oficial', 'treine_mais', 'curriculo_acao'] &&
+             data.etapaNome is string && data.etapaNome.size() <= 150 &&
+             data.acertos is number && data.acertos >= 0 &&
+             data.erros is number && data.erros >= 0 &&
+             data.timestamp is number;
+    }
+
+    function isValidAttempt(data) {
+      return data.keys().hasAll(['id', 'usuarioId', 'alunoNome', 'serie', 'modo', 'temaNome', 'pergunta', 'acertou', 'tempoGastoSegundos', 'timestamp']) &&
+             data.id is string && data.id.size() <= 128 &&
+             data.usuarioId is string && data.usuarioId.size() <= 128 &&
+             data.alunoNome is string && data.alunoNome.size() <= 150 &&
+             data.serie is string && data.serie.size() <= 80 &&
+             data.modo in ['oficial', 'treine_mais', 'curriculo_acao'] &&
+             data.temaNome is string && data.temaNome.size() <= 120 &&
+             data.pergunta is string && data.pergunta.size() <= 2000 &&
+             data.acertou is bool &&
+             data.tempoGastoSegundos is number && data.tempoGastoSegundos >= 0 &&
+             data.timestamp is number;
+    }
+
+    function isValidQuestionOverride(data) {
+      return data.keys().hasAll(['id', 'modulo', 'status', 'updatedAt']) &&
+             data.keys().hasOnly([
+               'id', 'modulo', 'status', 'etapa', 'nivel', 'serie',
+               'aulaNumero', 'aulaTitulo', 'temaKey', 'temaNome',
+               'pergunta', 'opcoes', 'correta', 'porque',
+               'dicaInvestigacao', 'svgType', 'invertida', 'habilidade', 'updatedAt'
+             ]) &&
+             data.id is string && data.id.size() <= 128 &&
+             data.modulo in ['oficial', 'treine_mais', 'curriculo_acao'] &&
+             data.status in ['custom', 'edited', 'deleted'] &&
+             (!('etapa' in data) || (data.etapa is number && data.etapa >= 1 && data.etapa <= 4)) &&
+             (!('nivel' in data) || (data.nivel in ['iniciante', 'intermediario', 'avancado'])) &&
+             (!('serie' in data) || (data.serie is string && data.serie.size() <= 80)) &&
+             (!('aulaNumero' in data) || (data.aulaNumero is number && data.aulaNumero >= 1 && data.aulaNumero <= 50)) &&
+             (!('aulaTitulo' in data) || (data.aulaTitulo is string && data.aulaTitulo.size() <= 200)) &&
+             (!('temaKey' in data) || (data.temaKey is string && data.temaKey.size() <= 120)) &&
+             (!('temaNome' in data) || (data.temaNome is string && data.temaNome.size() <= 150)) &&
+             (!('pergunta' in data) || (data.pergunta is string && data.pergunta.size() <= 3000)) &&
+             (!('opcoes' in data) || (data.opcoes is list && data.opcoes.size() <= 8 && (data.opcoes.size() == 0 || data.opcoes[0] is string))) &&
+             (!('correta' in data) || (data.correta is number && data.correta >= 0 && data.correta <= 7)) &&
+             (!('porque' in data) || (data.porque is string && data.porque.size() <= 3000)) &&
+             (!('dicaInvestigacao' in data) || (data.dicaInvestigacao is string && data.dicaInvestigacao.size() <= 2000)) &&
+             (!('svgType' in data) || (data.svgType is string && data.svgType.size() <= 120)) &&
+             (!('invertida' in data) || (data.invertida is bool)) &&
+             (!('habilidade' in data) || (data.habilidade is string && data.habilidade.size() <= 120)) &&
+             data.updatedAt is number;
+    }
+
+    match /users/{userId} {
+      allow get: if isValidId(userId);
+      allow list: if true;
+      allow create, update: if isValidId(userId) && isValidUser(request.resource.data);
+      allow delete: if isValidId(userId);
+    }
+
+    match /results/{resultId} {
+      allow get: if isValidId(resultId);
+      allow list: if true;
+      allow create, update: if isValidId(resultId) && isValidResult(request.resource.data);
+      allow delete: if isValidId(resultId);
+    }
+
+    match /attempts/{attemptId} {
+      allow get: if isValidId(attemptId);
+      allow list: if true;
+      allow create, update: if isValidId(attemptId) && isValidAttempt(request.resource.data);
+      allow delete: if isValidId(attemptId);
+    }
+
+    match /question_overrides/{overrideId} {
+      allow get: if isValidId(overrideId);
+      allow list: if true;
+      allow create, update: if isValidId(overrideId) && isValidQuestionOverride(request.resource.data);
+      allow delete: if isValidId(overrideId);
+    }
+
+    match /test/{testId} {
+      allow read, write: if true;
+    }
+  }
+}

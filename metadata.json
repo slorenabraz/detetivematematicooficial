@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix Detetive Matemático",
+  "description": "Plataforma pedagógica de Geometria e Trigonometria com desafios investigativos, ranking por sala e painel analítico para professores. Desenvolvido por Profª Ariane Braz.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

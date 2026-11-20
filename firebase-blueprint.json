@@ -1,0 +1,111 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Perfil de aluno, professor ou administrador cadastrado na plataforma",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "nome": { "type": "string", "maxLength": 150 },
+        "tipo": { "type": "string", "enum": ["aluno", "professor", "admin"] },
+        "email": { "type": "string", "maxLength": 150 },
+        "senha": { "type": "string", "maxLength": 100 },
+        "serie": { "type": "string", "maxLength": 80 },
+        "materia": { "type": "string", "maxLength": 80 },
+        "dataCadastro": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["id", "nome", "tipo", "email", "serie", "dataCadastro"]
+    },
+    "SessionResult": {
+      "title": "SessionResult",
+      "description": "Resultado de desafio concluído por aluno para consolidação no ranking escolar",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "usuarioId": { "type": "string", "maxLength": 128 },
+        "alunoNome": { "type": "string", "maxLength": 150 },
+        "serie": { "type": "string", "maxLength": 80 },
+        "modo": { "type": "string", "enum": ["oficial", "treine_mais", "curriculo_acao"] },
+        "etapaNome": { "type": "string", "maxLength": 150 },
+        "acertos": { "type": "number" },
+        "erros": { "type": "number" },
+        "tempoTotalSegundos": { "type": "number" },
+        "tempoMedioPorQuestao": { "type": "number" },
+        "data": { "type": "string", "maxLength": 50 },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["id", "usuarioId", "alunoNome", "serie", "modo", "etapaNome", "acertos", "erros", "timestamp"]
+    },
+    "QuestionAttempt": {
+      "title": "QuestionAttempt",
+      "description": "Tentativa de questão individual para diagnóstico analítico de erros e tempo pelo professor",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "usuarioId": { "type": "string", "maxLength": 128 },
+        "alunoNome": { "type": "string", "maxLength": 150 },
+        "serie": { "type": "string", "maxLength": 80 },
+        "modo": { "type": "string", "enum": ["oficial", "treine_mais", "curriculo_acao"] },
+        "etapaNumero": { "type": "number" },
+        "temaNome": { "type": "string", "maxLength": 120 },
+        "pergunta": { "type": "string", "maxLength": 2000 },
+        "respostaSelecionada": { "type": "string", "maxLength": 300 },
+        "respostaCorreta": { "type": "string", "maxLength": 300 },
+        "acertou": { "type": "boolean" },
+        "tempoGastoSegundos": { "type": "number" },
+        "data": { "type": "string", "maxLength": 50 },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["id", "usuarioId", "alunoNome", "serie", "modo", "temaNome", "pergunta", "acertou", "tempoGastoSegundos", "timestamp"]
+    },
+    "QuestionOverride": {
+      "title": "QuestionOverride",
+      "description": "Adições, edições, reformulações ou remoções de questões feitas pelo Administrador nos bancos de desafios",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "modulo": { "type": "string", "enum": ["oficial", "treine_mais", "curriculo_acao"] },
+        "status": { "type": "string", "enum": ["custom", "edited", "deleted"] },
+        "etapa": { "type": "number" },
+        "nivel": { "type": "string", "enum": ["iniciante", "intermediario", "avancado"] },
+        "serie": { "type": "string", "maxLength": 80 },
+        "aulaNumero": { "type": "number" },
+        "aulaTitulo": { "type": "string", "maxLength": 200 },
+        "temaKey": { "type": "string", "maxLength": 120 },
+        "temaNome": { "type": "string", "maxLength": 150 },
+        "pergunta": { "type": "string", "maxLength": 3000 },
+        "opcoes": { "type": "array" },
+        "correta": { "type": "number" },
+        "porque": { "type": "string", "maxLength": 3000 },
+        "dicaInvestigacao": { "type": "string", "maxLength": 2000 },
+        "svgType": { "type": "string", "maxLength": 120 },
+        "invertida": { "type": "boolean" },
+        "habilidade": { "type": "string", "maxLength": 120 },
+        "updatedAt": { "type": "number" }
+      },
+      "required": ["id", "modulo", "status", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Usuários sincronizados (alunos, professores e administradores)"
+    },
+    "/results/{resultId}": {
+      "schema": "SessionResult",
+      "description": "Resultados de sessões para o ranking"
+    },
+    "/attempts/{attemptId}": {
+      "schema": "QuestionAttempt",
+      "description": "Tentativas detalhadas para relatório pedagógico do professor"
+    },
+    "/question_overrides/{overrideId}": {
+      "schema": "QuestionOverride",
+      "description": "Customizações, edições e remoções administrativas das questões de todos os desafios"
+    },
+    "/test/{testId}": {
+      "schema": "User",
+      "description": "Documentos de teste de conexão"
+    }
+  }
+}
